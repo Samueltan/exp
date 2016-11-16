@@ -10,8 +10,12 @@ public class Subject {
     private String content;
 
     public Subject(final String topicName){
+        this(topicName, topicName);
+    }
+
+    public Subject(final String topicName, final String content){
         this.topicName = topicName;
-        this.content = topicName;
+        this.content = content;
     }
 
     public String getTopicName() {
@@ -29,11 +33,18 @@ public class Subject {
 
     protected void attach(final Observer observer){
         observers.add(observer);
-        System.out.println( "Observer <" + observer.getName( ) + "> has ");
+        System.out.printf(
+            "Observer <%s> has subscribed Topic <%s>\n",
+            observer.getName( ),
+            topicName);
     }
 
     protected void detach(final Observer observer){
         observers.remove(observer);
+        System.out.printf(
+            "Observer <%s> has unsubscribed Topic <%s>\n",
+            observer.getName( ),
+            topicName);
     }
 
     public void notifyAllObservers(){

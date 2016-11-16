@@ -12,23 +12,39 @@ public class Observer
      }
 
     public void update(){
-        System.out.println( "Subject <"+ subject.getTopicName() + "> has changed content to <" + subject.getContent( ) + ">" );
+        System.out.printf(
+            "Notify <%s>: Subject <%s> has changed content to <%s>\n",
+            name,
+            subject.getTopicName( ),
+            subject.getContent( )
+        );
     }
 
     public String getName(){
         return name;
     }
 
-    public void setSubject(final Subject subject){
+    @SuppressWarnings( "hiding" )
+    public void subscribe(final Subject subject){
         this.subject = subject;
+        this.attach( );
     }
 
-    public void attach(){
+    public void unsubscribe(final Subject subject){
+        this.detach( );
+        this.subject = null;
+    }
+
+    private void attach(){
         subject.attach( this );
     }
 
-    public void detach(){
-        subject.detach( this );
+    private void detach(){
+        if(subject != null){
+            subject.detach( this );
+        }else{
+            System.out.println( "The subject is already unsubscribed!" );
+        }
     }
 
 }

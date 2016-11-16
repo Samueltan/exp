@@ -11,15 +11,17 @@ public class ObserverPatternDemo
         final Observer obs2 = new Observer("Observer 2" , subA);
         final Observer obs3 = new Observer("Observer 3" , subA);
 
-        subA.setContent("Content 1 in topic A");
+        subA.setContent("Topic A content changed 1");
 
         System.out.println(  );
 
-        obs3.detach( );
-        subA.setTopicName( "Topic 2" );
+        obs3.unsubscribe( subA );
+        obs3.unsubscribe( subA );
+        obs3.subscribe( subB );
+        subA.setContent( "Topic A content changed 2" );
 
         System.out.println(  );
 
-        subB.setTopicName( "Topic 3" );
+        subB.setContent( "Topic B content changed 1" );
     }
 }
