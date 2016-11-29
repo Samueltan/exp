@@ -3,7 +3,8 @@ package exp.dp.composite;
 class Client {
     public static void main(final String args[]) {
         //针对抽象构件编程
-        AbstractFile file1,file2,file3,file4,file5,folder1,folder2,folder3,folder4;
+        AbstractFile file1,file2,file3,file4,file5;
+        Folder folder1,folder2,folder3,folder4;
 
         folder1 = new Folder("Sunny的资料");
         folder2 = new Folder("图像文件");

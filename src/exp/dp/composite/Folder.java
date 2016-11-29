@@ -12,19 +12,16 @@ class Folder extends AbstractFile {
         this.name = name;
     }
 
-    @Override
     public void add(final AbstractFile file) {
         fileList.add(file);
     }
 
-    @Override
     public void remove(final AbstractFile file) {
         fileList.remove(file);
     }
 
-    @Override
     public AbstractFile getChild(final int i) {
-        return (AbstractFile)fileList.get(i);
+        return fileList.get(i);
     }
 
     @Override
