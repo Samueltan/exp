@@ -1,7 +1,8 @@
-package annotation;
+package exp.annotation;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class ParseAnnotation {
@@ -45,9 +46,26 @@ public class ParseAnnotation {
             }
         }
     }
+
+    public static void parseFieldAnnotation(){
+        final Field[] fields = UserAnnotation.class.getDeclaredFields( );
+        for (final Field fidld : fields) {
+
+            final boolean hasAnnotation = fidld.isAnnotationPresent(TestA.class);
+            if (hasAnnotation) {
+
+                final TestA annotation =fidld.getAnnotation(TestA.class);
+                System.out.println("field = " + fidld.getName()
+                + " ; id = " + annotation.id() + " ; description = "
+                + annotation.name() + "; gid= "+annotation.gid());
+            }
+        }
+    }
+
     public static void main(final String[] args) throws ClassNotFoundException {
         parseTypeAnnotation();
         parseMethodAnnotation();
         parseConstructAnnotation();
+        parseFieldAnnotation();
     }
 }
